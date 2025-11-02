@@ -19,20 +19,20 @@ const AddModal = () => {
       created_by: user.email
     }
 
-    // fetch('http://localhost:3000/models', {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData)
-    // })
-    // .then(res => res.json())
-    // .then(data=> {
-    //   console.log(data)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
+    fetch('http://localhost:3000/Products', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data=> {
+      console.log(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
    
 
   }

@@ -18,12 +18,12 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch('http://localhost:3000/latest-models')
+        loader: () => fetch("http://localhost:3000/latest-models"),
       },
       {
         path: "/all-models",
         element: <AllModels />,
-        loader:()=>fetch(`http://localhost:3000/Products`)
+        loader: () => fetch(`http://localhost:3000/Products`),
       },
       {
         path: "/profile",
@@ -48,17 +48,23 @@ export const router = createBrowserRouter([
             <ModelDetails />
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
+        loader: async ({ params }) => {
+  const res = await fetch(`http://localhost:3000/Products/${params.id}`);
+  const data = await res.json();
+  return { result: data };
+    
       },
+    },
 
-        {
+      {
         path: "/update-model/:id",
         element: (
           <PrivateRoute>
             <UpdateModel />
           </PrivateRoute>
         ),
-          loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/Products/${params.id}`),
       },
       {
         path: "/auth/login",
