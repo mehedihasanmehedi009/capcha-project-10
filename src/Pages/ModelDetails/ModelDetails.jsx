@@ -2,53 +2,53 @@ import { Link, useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const ModelDetails = () => {
-  const data = useLoaderData()
- const model = data.result
- console.log(model)
+//   const data = useLoaderData()
+//  const model = data.result
+//  console.log(model)
 
- const navigate = useNavigate()
+//  const navigate = useNavigate()
 
 
- const handleDlete = () => {
-  Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
+//  const handleDlete = () => {
+//   Swal.fire({
+//   title: "Are you sure?",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   confirmButtonText: "Yes, delete it!"
+// }).then((result) => {
+//   if (result.isConfirmed) {
      
 
     
-    fetch(`http://localhost:3000/models/${model._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then(res => res.json())
-    .then(data=> {
-      console.log(data)
-      navigate('/all-models')
+//     fetch(`http://localhost:3000/models/${model._id}`, {
+//       method: "DELETE",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//     .then(res => res.json())
+//     .then(data=> {
+//       console.log(data)
+//       navigate('/all-models')
 
-         Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-    })
-    .catch(err => {
-      console.log(err)
-    })
+//          Swal.fire({
+//       title: "Deleted!",
+//       text: "Your file has been deleted.",
+//       icon: "success"
+//     });
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
 
 
  
-  }
-});
- }
+//   }
+// });
+//  }
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
@@ -80,14 +80,14 @@ const ModelDetails = () => {
             {/* Optional: Action Buttons */}
             <div className="flex gap-3 mt-6">
               <Link
-                to={`/update-model/${model._id}`}
+                // to={`/update-model/${model._id}`}
                 className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
               >
                 Update Model
               </Link>
-              <button onClick={handleDlete} className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600">
+              {/* <button onClick={handleDlete} className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600">
                 Delete
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

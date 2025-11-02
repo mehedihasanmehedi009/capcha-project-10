@@ -24,7 +24,7 @@ const Banner = () => {
 
   return (
     <>
-    <div className="absolute w-full flex top-0 left-0 justify-center ">
+    <div className="absolute mt-18 w-full flex top-0 left-0 justify-center ">
       <div className="max-w-7xl mx-auto">
         <div className="relative w-full overflow-hidden bg-black rounded-2xl shadow-2xl">
           <div

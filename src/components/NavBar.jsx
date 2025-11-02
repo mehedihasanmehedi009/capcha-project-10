@@ -46,6 +46,11 @@ const NavBar = () => {
                 <IoLogoModelS /> All Models
               </NavLink>
             </li>
+            <li>
+              <NavLink to={"/add-model"}>
+                <ImBoxAdd /> Add model
+              </NavLink>
+            </li>
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 text-xl font-bold">
@@ -67,10 +72,10 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink to={"/add-model"}>
-             <ImBoxAdd /> Add model
+              <ImBoxAdd /> Add model
             </NavLink>
           </li>
-{/* 
+          {/* 
           <li>
             <NavLink to={"/profile"}>
               <FaUser /> Profile
@@ -90,7 +95,10 @@ const NavBar = () => {
                 <img
                   alt="Tailwind CSS Navbar component"
                   referrerPolicy="no-referrer"
-                  src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                  src={
+                    user.photoURL ||
+                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  }
                 />
               </div>
             </div>

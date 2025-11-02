@@ -3,42 +3,44 @@ import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateModel = () => {
-  const data = useLoaderData();
-  const model = data.result;
+  // const data = useLoaderData();
+  // const model = data.result;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    const formData = {
-      name: e.target.name.value,
-      category: e.target.category.value,
-      description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
-    };
+  //   const formData = {
+  //     name: e.target.name.value,
+  //     category: e.target.category.value,
+  //     description: e.target.description.value,
+  //     thumbnail: e.target.thumbnail.value,
+  //   };
 
-    fetch(`http://localhost:3000/models/${model._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Successfully updated!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //   fetch(`http://localhost:3000/models/${model._id}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(formData),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       toast.success("Successfully updated!");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
 
   return (
     <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">Update Model</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form  className="space-y-4">
+          
+          {/* onSubmit={handleSubmit} */}
           {/* Name Field */}
           <div>
             <label className="label font-medium">Name</label>
