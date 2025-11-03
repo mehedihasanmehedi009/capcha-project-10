@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/latest-models"),
+        loader:()=> fetch("http://localhost:3000/letst")
       },
       {
         path: "/all-models",
@@ -63,8 +63,13 @@ export const router = createBrowserRouter([
             <UpdateModel />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/Products/${params.id}`),
+           loader: async ({ params }) => {
+  const res = await fetch(`http://localhost:3000/Products/${params.id}`);
+  const data = await res.json();
+  return { result: data };
+    
+      },
+      
       },
       {
         path: "/auth/login",

@@ -3,13 +3,13 @@ import Swal from "sweetalert2";
 
 const ModelDetails = () => {
   const data = useLoaderData();
-
   // console.log(data)
   const model = data.result;
   console.log(model);
 
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
+    
+  const navigate = useNavigate()
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -30,7 +30,8 @@ const ModelDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            navigate("/all-models");
+            // navigate("/all-models");
+            navigate("/all-models")
 
             Swal.fire({
               title: "Deleted!",
@@ -44,6 +45,7 @@ const ModelDetails = () => {
       }
     });
   };
+
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
@@ -75,7 +77,7 @@ const ModelDetails = () => {
             {/* Optional: Action Buttons */}
             <div className="flex gap-3 mt-6">
               <Link
-                // to={`/update-model/${model._id}`}
+                to={`/update-model/${model._id}`}
                 className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
               >
                 Update Model
