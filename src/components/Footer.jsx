@@ -83,6 +83,7 @@ const Footer = () => {
           </span>
         </p>
       </div>
+      
     </footer>
   );
 };

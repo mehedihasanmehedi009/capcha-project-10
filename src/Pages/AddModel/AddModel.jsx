@@ -13,7 +13,7 @@ const AddModal = () => {
       name: e.target.name.value,
       category: e.target.category.value,
       description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
+      thumbnailUrl: e.target.thumbnailUrl.value,
       created_at: new Date(),
       downloads: 0,
       created_by: user.email
@@ -95,7 +95,7 @@ const AddModal = () => {
             <label className="label font-medium">Thumbnail URL</label>
             <input
               type="url"
-              name="thumbnail"
+              name="thumbnailUrl"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"

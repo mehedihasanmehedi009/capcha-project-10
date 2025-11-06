@@ -13,7 +13,7 @@ const UpdateModel = () => {
       name: e.target.name.value,
       category: e.target.category.value,
       description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
+      thumbnailUrl: e.target.thumbnailUrl.value,
     };
 
     fetch(`http://localhost:3000/Products/${model._id}`, {
@@ -35,6 +35,7 @@ const UpdateModel = () => {
 
   return (
     <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+      
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">Update Model</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -92,8 +93,8 @@ const UpdateModel = () => {
             <label className="label font-medium">Thumbnail URL</label>
             <input
               type="url"
-              name="thumbnail"
-              defaultValue={model.thumbnail}
+              name="thumbnailUrl"
+              defaultValue={model.thumbnailUrl}
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"
