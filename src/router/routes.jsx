@@ -62,13 +62,6 @@ export const router = createBrowserRouter([
             <UpdateModel />
           </PrivateRoute>
         ),
-        loader: async ({ params }) => {
-          const res = await fetch(
-            `http://localhost:3000/Products/${params.id}`
-          );
-          const data = await res.json();
-          return { result: data };
-        },
       },
       {
         path: "/auth/login",

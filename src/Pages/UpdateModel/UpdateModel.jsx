@@ -1,38 +1,49 @@
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Navigate, useLoaderData } from "react-router";
-// import Swal from "sweetalert2";
-
+import { useNavigate, useParams } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 const UpdateModel = () => {
-  const data = useLoaderData();
-  const model = data.result;
-  console.log(model)
-
+    const { id } = useParams();
+  const [model, setModul] = useState({});
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    fetch(`http://localhost:3000/Products/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setModul(data);
+      });
+  }, [user,id]);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = {
       name: e.target.name.value,
       category: e.target.category.value,
       description: e.target.description.value,
       thumbnailUrl: e.target.thumbnailUrl.value,
     };
- 
-fetch(`http://localhost:3000/Products/${model._id}`, {
-  method: "PUT",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData),
-})
-  .then(res => res.json())
-  .then(data => {
-    toast.success("Successfully updated!",data);
-    Navigate("/my-models");
-  })
-  .catch(err => console.error(err));
-  }
+
+    fetch(`http://localhost:3000/Products/${model._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully updated!", data);
+        navigate("/all-models");
+      })
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
-      
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">Update Model</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -101,7 +112,7 @@ fetch(`http://localhost:3000/Products/${model._id}`, {
           {/* Submit Button */}
           <button
             type="submit"
-            className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
+            className="btn w-full text-white mt-6 rounded-full bg-gradient-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
           >
             Update Model
           </button>

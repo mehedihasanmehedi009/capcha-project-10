@@ -17,7 +17,7 @@ const ModelDetails = () => {
       .then((data) => {
         setModul(data);
       });
-  }, [user]);
+  }, [user,id]);
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
