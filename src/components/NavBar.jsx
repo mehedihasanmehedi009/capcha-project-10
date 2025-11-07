@@ -122,6 +122,12 @@ const NavBar = () => {
                   My Moduls
                 </Link>
               </li>
+               <li className="">
+                <Link to={"/mydownloded"}>
+                  <FaUser />
+                  My Downlodeds
+                </Link>
+              </li>
               <li>
                 <a>
                   {" "}

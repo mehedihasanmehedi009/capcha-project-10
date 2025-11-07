@@ -38,7 +38,7 @@ const ModelDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            // navigate("/all-models");
+      
             navigate("/all-models");
 
             Swal.fire({
@@ -53,6 +53,26 @@ const ModelDetails = () => {
       }
     });
   };
+
+const hendelsdownlod=() =>{
+   fetch("http://localhost:3000/downlod", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ ...model, Downloaded_by: user.email }),
+})
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+    Swal.fire({
+      title: "Downloaded!",
+      text: "Downloaded file has been deleted.",
+      icon: "success",
+    });
+  })
+  .catch((err) => console.error(err));
+}
 
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
@@ -86,7 +106,7 @@ const ModelDetails = () => {
               >
                 Update Model
               </Link>
-              <button className="btn btn-primary  rounded-full">Downlod</button>
+              <button  onClick={ hendelsdownlod} className="btn btn-primary  rounded-full">Downlod</button>
               <button
                 onClick={handleDlete}
                 className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600"

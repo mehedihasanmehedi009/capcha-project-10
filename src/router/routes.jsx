@@ -10,6 +10,7 @@ import AddModel from "../Pages/AddModel/AddModel";
 import ModelDetails from "../Pages/ModelDetails/ModelDetails";
 import UpdateModel from "../Pages/UpdateModel/UpdateModel";
 import Mymodulspage from "../Mymoduls/Mymodulspage";
+import Mydownloaded from "../Pages/MydownlodPage/Mydownloaded";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
  
+      },
+      {
+       path:"/mydownloded",
+       element:<PrivateRoute>
+           <Mydownloaded>
+            
+           </Mydownloaded>
+       </PrivateRoute>
       },
       {
         path:"/my-moduls",
