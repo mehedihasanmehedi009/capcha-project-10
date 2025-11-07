@@ -1,15 +1,23 @@
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-
+import { AuthContext } from "../../context/AuthContext";
 const ModelDetails = () => {
-  const data = useLoaderData();
-  // console.log(data)
-  const model = data.result;
-  console.log(model);
-
-  // const navigate = useNavigate();
-    
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [model, setModul] = useState({});
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    fetch(`http://localhost:3000/Products/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setModul(data);
+      });
+  }, [user]);
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -31,7 +39,7 @@ const ModelDetails = () => {
           .then((data) => {
             console.log(data);
             // navigate("/all-models");
-            navigate("/all-models")
+            navigate("/all-models");
 
             Swal.fire({
               title: "Deleted!",
@@ -59,22 +67,18 @@ const ModelDetails = () => {
           </div>
 
           <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
-            {/* Title */}
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
               {model?.name}
             </h1>
 
-            {/* Category Badge */}
             <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
               {model?.category}
             </div>
 
-            {/* Description */}
             <p className="text-gray-600 leading-relaxed text-base md:text-lg">
               {model?.description}
             </p>
 
-            {/* Optional: Action Buttons */}
             <div className="flex gap-3 mt-6">
               <Link
                 to={`/update-model/${model._id}`}
@@ -82,6 +86,7 @@ const ModelDetails = () => {
               >
                 Update Model
               </Link>
+              <button className="btn btn-primary  rounded-full">Downlod</button>
               <button
                 onClick={handleDlete}
                 className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600"

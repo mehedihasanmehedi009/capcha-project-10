@@ -18,7 +18,7 @@ const Footer = () => {
         <div>
           <div className="flex items-center space-x-2 text-white">
          <LuRotate3D size={25}/>
-      <span className="text-xl font-bold text-gray-800 dark:text-gray-200">3D Model Hub</span>
+      <span className="text-xl font-bold text-gray-800 dark:text-gray-200">4K Model Hub</span>
     </div>
           <ul className="space-y-2 mt-4">
             <li><Link to="/all-models" className="text-gray-600 dark:text-gray-200 hover:text-blue-600">All Models</Link></li>
@@ -76,7 +76,7 @@ const Footer = () => {
 
       <div className="border-t lg:mb-0 md:mb-0 mb-20 border-[#fa7171] mt-8 pt-4 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-200">
-          © {currentYear} 3D Model Hub Learn. All Rights Reserved.
+          © {currentYear} 4K Model Hub Learn. All Rights Reserved.
           <span className="ml-4">
             <Link to="/" className="hover:text-blue-600 mr-3">Privacy Policy</Link>
             <Link to="/" className="hover:text-blue-600">Terms of Service</Link>

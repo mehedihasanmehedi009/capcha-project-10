@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 
 export const ModelCard = ({model}) => {
-    const {name, thumbnailUrl, category, description, _id} = model
+    const {name, thumbnailUrl, category, description, _id,
+created_by} = model
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <figure className="h-48 overflow-hidden">
@@ -14,6 +15,9 @@ export const ModelCard = ({model}) => {
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <div className="badge text-xs badge-xs badge-secondary rounded-full">{category}</div>
+        <div className="text-xs  text-pink-500">
+          {created_by}
+        </div>
         <p className="line-clamp-1">
             {description}
         </p>

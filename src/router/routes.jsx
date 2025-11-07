@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddModel from "../Pages/AddModel/AddModel";
 import ModelDetails from "../Pages/ModelDetails/ModelDetails";
 import UpdateModel from "../Pages/UpdateModel/UpdateModel";
+import Mymodulspage from "../Mymoduls/Mymodulspage";
 
 export const router = createBrowserRouter([
   {
@@ -18,8 +19,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:()=> fetch("http://localhost:3000/letst")
-        
+        loader: () => fetch("http://localhost:3000/letst"),
       },
       {
         path: "/all-models",
@@ -49,14 +49,12 @@ export const router = createBrowserRouter([
             <ModelDetails />
           </PrivateRoute>
         ),
-        loader: async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/Products/${params.id}`);
-  const data = await res.json();
-  return { result: data };
-    
+ 
       },
-    },
-
+      {
+        path:"/my-moduls",
+        element: <PrivateRoute><Mymodulspage></Mymodulspage></PrivateRoute>
+      },
       {
         path: "/update-model/:id",
         element: (
@@ -64,13 +62,13 @@ export const router = createBrowserRouter([
             <UpdateModel />
           </PrivateRoute>
         ),
-           loader: async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/Products/${params.id}`);
-  const data = await res.json();
-  return { result: data };
-    
-      },
-      
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/Products/${params.id}`
+          );
+          const data = await res.json();
+          return { result: data };
+        },
       },
       {
         path: "/auth/login",

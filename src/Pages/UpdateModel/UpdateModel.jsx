@@ -1,10 +1,11 @@
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router";
+import { Navigate, useLoaderData } from "react-router";
 // import Swal from "sweetalert2";
 
 const UpdateModel = () => {
   const data = useLoaderData();
   const model = data.result;
+  console.log(model)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,23 +16,19 @@ const UpdateModel = () => {
       description: e.target.description.value,
       thumbnailUrl: e.target.thumbnailUrl.value,
     };
-
-    fetch(`http://localhost:3000/Products/${model._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Successfully updated!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+ 
+fetch(`http://localhost:3000/Products/${model._id}`, {
+  method: "PUT",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData),
+})
+  .then(res => res.json())
+  .then(data => {
+    toast.success("Successfully updated!",data);
+    Navigate("/my-models");
+  })
+  .catch(err => console.error(err));
+  }
 
   return (
     <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">

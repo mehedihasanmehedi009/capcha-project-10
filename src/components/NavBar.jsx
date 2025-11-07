@@ -7,6 +7,7 @@ import { LuRotate3D } from "react-icons/lu";
 import { ImBoxAdd } from "react-icons/im";
 import { use } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Mymodulspage from "../Mymoduls/Mymodulspage";
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
@@ -54,7 +55,7 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to={"/"} className="flex items-center gap-1 text-xl font-bold">
-          <LuRotate3D /> 3D Models Hub
+          <LuRotate3D /> 4K Models WEB
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -107,12 +108,18 @@ const NavBar = () => {
               className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
             >
               <div className=" pb-3 border-b border-b-gray-200">
-                <li className="text-sm font-bold">{user.displayName}</li>
+                <li className="text-sm font-bold text-center">{user.displayName}</li>
                 <li className="text-xs">{user.email}</li>
               </div>
               <li className="mt-3">
                 <Link to={"/profile"}>
                   <FaUser /> Profile
+                </Link>
+              </li>
+              <li className="">
+                <Link to={"/my-moduls"}>
+                  <FaUser />
+                  My Moduls
                 </Link>
               </li>
               <li>
