@@ -8,6 +8,9 @@ import { ImBoxAdd } from "react-icons/im";
 import { use } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Mymodulspage from "../Mymoduls/Mymodulspage";
+import { FaArrowDown } from "react-icons/fa6";
+import { FcDebt } from "react-icons/fc";
+
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
@@ -118,13 +121,13 @@ const NavBar = () => {
               </li>
               <li className="">
                 <Link to={"/my-moduls"}>
-                  <FaUser />
+                   <FcDebt />
                   My Moduls
                 </Link>
               </li>
                <li className="">
                 <Link to={"/mydownloded"}>
-                  <FaUser />
+               <FaArrowDown />
                   My Downlodeds
                 </Link>
               </li>

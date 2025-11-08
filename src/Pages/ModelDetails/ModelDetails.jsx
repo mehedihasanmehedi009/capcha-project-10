@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 const ModelDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [model, setModul] = useState({});
   const { user } = useContext(AuthContext);
+    const [reload,setRealod] = useState(false)
   useEffect(() => {
     fetch(`http://localhost:3000/Products/${id}`, {
       headers: {
@@ -17,7 +19,7 @@ const ModelDetails = () => {
       .then((data) => {
         setModul(data);
       });
-  }, [user,id]);
+  }, [user,id,reload]);
   const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -55,21 +57,27 @@ const ModelDetails = () => {
   };
 
 const hendelsdownlod=() =>{
-   fetch("http://localhost:3000/downlod", {
+   const finalModel = {
+      name: model.name,
+      downloads: model.downloads,
+      created_by: model.created_by,
+      description: model.description,
+      thumbnail: model.thumbnail,
+      created_at: new Date(),
+      downloaded_by: user.email,
+    };
+   fetch(`http://localhost:3000/downlod/${model._id}`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
-  body: JSON.stringify({ ...model, Downloaded_by: user.email }),
+  body: JSON.stringify( finalModel),
 })
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
-    Swal.fire({
-      title: "Downloaded!",
-      text: "Downloaded file has been deleted.",
-      icon: "success",
-    });
+    toast.success("downloaded success now")
+    setRealod(!reload)
   })
   .catch((err) => console.error(err));
 }
@@ -90,11 +98,18 @@ const hendelsdownlod=() =>{
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
               {model?.name}
             </h1>
-
-            <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+             <div>
+            <div className="flex gap-3">
+              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
               {model?.category}
             </div>
-
+                
+            <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              {model?.
+downloads}
+            </div>
+            </div>
+            </div>             
             <p className="text-gray-600 leading-relaxed text-base md:text-lg">
               {model?.description}
             </p>
