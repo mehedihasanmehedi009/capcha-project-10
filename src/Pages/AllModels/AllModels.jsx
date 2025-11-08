@@ -1,60 +1,52 @@
  import { useLoaderData } from "react-router";
-import { useState, useEffect } from "react";
 import { ModelCard } from "../../components/ModelCard";
+import { useState } from "react";
 
 const AllModels = () => {
   const data = useLoaderData();
-  const [search, setSearch] = useState("");
-  const [filteredModels, setFilteredModels] = useState(data);
-  const [loading, setLoading] = useState(false);
+  const [moduls,setModuls]=useState(data)
+  const  hendelsearch =(e)=>{
+    e.preventDefault()
+  const search_text = e.target.search.value
+    fetch(`http://localhost:3000/search?search=${search_text}`)
+  .then(res=> res.json())
+  .then(data=>{
+    console.log(  data)
+    setModuls(data)
+  })
+  }
 
-  // search effect
-  useEffect(() => {
-    setLoading(true);
-
-    // simulate delay (like server searching)
-    const timer = setTimeout(() => {
-      const results = data.filter((model) =>
-        model.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredModels(results);
-      setLoading(false);
-    }, 600); // 0.6 sec delay
-
-    return () => clearTimeout(timer);
-  }, [search, data]);
 
   return (
     <div className="p-4">
-      {/* Title */}
       <div className="text-2xl text-center font-bold">All Models</div>
-      <p className="text-center mb-6">Explore 3D models.</p>
+      <p className="text-center">Explore 3D models.</p>
+        <form onSubmit={hendelsearch} className="text-center mt-5 mb-10">
+          <label className="input">
+  <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <g
+      strokeLinejoin="round"
+      strokeLinecap="round"
+      strokeWidth="2.5"
+      fill="none"
+      stroke="currentColor"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </svg>
+  <input type="search"
+  
+  name="search"required placeholder="Search" />
 
-      {/* 🔍 Search Box */}
-      <div className="flex justify-center mb-8">
-        <input
-          type="text"
-          placeholder="Search models..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
-        />
-      </div>
-
-      {/* 🌀 Loading Spinner */}
-      {loading ? (
-        <div className="flex justify-center items-center py-10">
-          <div className="w-10 h-10 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-        </div>
-      ) : filteredModels.length > 0 ? (
+</label>
+  <button className="btn btn-secondary">Search</button>
+        </form>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredModels.map((model) => (
+          { moduls.map((model) => (
             <ModelCard key={model._id} model={model} />
           ))}
         </div>
-      ) : (
-        <p className="text-center text-gray-500">No models found.</p>
-      )}
     </div>
   );
 };

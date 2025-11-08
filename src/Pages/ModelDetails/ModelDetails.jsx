@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 const ModelDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log(id)
   const [model, setModul] = useState({});
   const { user } = useContext(AuthContext);
     const [reload,setRealod] = useState(false)
@@ -31,7 +32,7 @@ const ModelDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/Products/${model._id}`, {
+        fetch(`http://localhost:3000/Products/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +63,8 @@ const hendelsdownlod=() =>{
       downloads: model.downloads,
       created_by: model.created_by,
       description: model.description,
-      thumbnail: model.thumbnail,
+     thumbnailUrl:model.thumbnailUrl,
+     category:model.category,
       created_at: new Date(),
       downloaded_by: user.email,
     };
